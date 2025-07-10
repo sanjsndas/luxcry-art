@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxcry Cart | Style That Speaks in Silks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0D0D0D;
+            --accent-gold: #F7E7CE;
+            --accent-white: #F5F5F5;
+            --text-light: #E8E8E8;
+            --text-dark: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--accent-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: var(--accent-white);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo span {
+            color: var(--accent-white);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--accent-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-gold);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent-gold);
+            color: var(--primary);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        /* Cart Dropdown */
+        .cart-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 350px;
+            background-color: var(--accent-white);
+            border: 1px solid #ddd;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            z-index: 10;
+            display: none;
+            color: var(--text-dark);
+        }
+
+        .cart-dropdown.active {
+            display: block;
+        }
+
+        .cart-dropdown h3 {
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-price {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .remove-item {
+            color: #ff6b6b;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .cart-total {
+            margin-top: 1rem;
+            font-weight: bold;
+            text-align: right;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+        }
+
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--accent-white);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--accent-white);
+        }
+
+        .btn-primary:hover {
+            background: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: var(--accent-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .hero-buttons .btn {
+            min-width: 150px;
+        }
+
+        /* Featured Categories */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background: var(--accent-gold);
+            margin: 0.5rem auto;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .category-content {
+            padding: 1.5rem;
+        }
+
+        .category-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .category-desc {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Featured Products */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent-gold);
+            color: var(--primary);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .product-designer {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .product-price .old-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--primary);
+            color: var(--accent-white);
+            padding: 4rem 2rem;
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--accent-white);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--accent-gold);
+            position: absolute;
+            top: -20px;
+            left: -15px;
+            opacity: 0.3;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+
+        .author-info h4 {
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: var(--accent-white);
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+        }
+
+        .newsletter-form button {
+            padding: 0 1.5rem;
+            background: var(--accent-gold);
+            color: var(--primary);
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background: #e6d5b8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--accent-white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-col h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-gold);
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--accent-white);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-gold);
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-img {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input {
+                margin-bottom: 1rem;
+            }
+
+            .newsletter-form button {
+                padding: 0.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .cart-dropdown {
+                width: 280px;
+            }
+        }
+
+        /* Additional Styles */
+        .text-gold {
+            color: var(--accent-gold);
+        }
+
+        .mb-3 {
+            margin-bottom: 3rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Disclaimer Section */
+        .disclaimer {
+            background: #f9f9f9;
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .disclaimer h2 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .disclaimer-content {
+            columns: 2;
+            column-gap: 3rem;
+        }
+
+        .disclaimer p {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #555;
+            break-inside: avoid;
+        }
+
+        @media (max-width: 768px) {
+            .disclaimer-content {
+                columns: 1;
+            }
+        }
+
+        /* Customer Satisfaction */
+        .satisfaction {
+            background: var(--accent-white);
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .satisfaction h2 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .satisfaction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .satisfaction-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .satisfaction-icon {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .satisfaction-item h3 {
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .satisfaction-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo"><span class="text-gold">Lux</span>cry <span>Cart</span></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li>
+                        <div class="cart-icon" id="cartIcon">
+                            🛒 <span class="cart-count">0</span>
+                            <div class="cart-dropdown" id="cartDropdown">
+                                <h3>Your Cart</h3>
+                                <div id="cartItems">
+                                    <!-- Cart items will be added here dynamically -->
+                                </div>
+                                <div class="cart-total">
+                                    Total: $<span id="cartTotal">0.00</span>
+                                </div>
+                                <div class="cart-actions">
+                                    <button class="btn btn-outline">View Cart</button>
+                                    <button class="btn btn-primary">Checkout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="serif">Style That Speaks in Silks</h1>
+            <p>Curated luxury fashion from timeless classics to cutting-edge designer pieces. Wear what moves you.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Enter the Cart</button>
+                <button class="btn btn-outline">Explore Designers</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title serif">Featured Categories</h2>
+        <div class="categories">
+            <div class="category-card">
+                <img src="p1.avif" alt="Womenswear" class="category-img">
+                <div class="category-content">
+                    <h3 class="category-title serif">Womenswear</h3>
+                    <p class="category-desc">Couture dresses, cashmere wraps, power suits, and resort luxe</p>
+                    <button class="btn btn-outline btn-sm">Explore</button>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="p2.avif" alt="Menswear" class="category-img">
+                <div class="category-content">
+                    <h3 class="category-title serif">Menswear</h3>
+                    <p class="category-desc">Tailored jackets, silk shirts, and elevated streetwear</p>
+                    <button class="btn btn-outline btn-sm">Explore</button>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="p3.avif" alt="Jewelry & Accessories" class="category-img">
+                <div class="category-content">
+                    <h3 class="category-title serif">Jewelry & Accessories</h3>
+                    <p class="category-desc">Artisan gold, limited-edition clutches, and timepieces</p>
+                    <button class="btn btn-outline btn-sm">Explore</button>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="p4.avif" alt="Luxury Shoes" class="category-img">
+                <div class="category-content">
+                    <h3 class="category-title serif">Luxury Shoes</h3>
+                    <p class="category-desc">Handmade loafers, embellished sandals, and statement heels</p>
+                    <button class="btn btn-outline btn-sm">Explore</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title serif">New Arrivals</h2>
+        <div class="products">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <span class="product-badge">New</span>
+                <img src="p5.avif" alt="Silk Evening Gown" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">Ethereal Silk Evening Gown</h3>
+                    <p class="product-designer">by Valentino</p>
+                    <p class="product-price">$1,850.00</p>
+                    <div class="product-actions">
+                        <button class="btn btn-outline btn-sm">Details</button>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="1" data-name="Ethereal Silk Evening Gown" data-price="1850.00" data-image="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="p6.avif" alt="Cashmere Wrap Coat" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">Cashmere Wrap Coat</h3>
+                    <p class="product-designer">by Max Mara</p>
+                    <p class="product-price">$2,450.00</p>
+                    <div class="product-actions">
+                        <button class="btn btn-outline btn-sm">Details</button>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="2" data-name="Cashmere Wrap Coat" data-price="2450.00" data-image="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <span class="product-badge">Limited</span>
+                <img src="p7.webp" alt="Tailored Wool Suit" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">Tailored Wool Suit</h3>
+                    <p class="product-designer">by Tom Ford</p>
+                    <p class="product-price">$3,200.00</p>
+                    <div class="product-actions">
+                        <button class="btn btn-outline btn-sm">Details</button>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="3" data-name="Tailored Wool Suit" data-price="3200.00" data-image="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="p8.avif" alt="Embellished Sandals" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">Embellished Sandals</h3>
+                    <p class="product-designer">by Jimmy Choo</p>
+                    <p class="product-price">$895.00</p>
+                    <div class="product-actions">
+                        <button class="btn btn-outline btn-sm">Details</button>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="4" data-name="Embellished Sandals" data-price="895.00" data-image="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 5 -->
+            <div class="product-card">
+                <span class="product-badge">Sale</span>
+                <img src="p9.avif" alt="Artisan Gold Necklace" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">Artisan Gold Necklace</h3>
+                    <p class="product-designer">by Cartier</p>
+                    <p class="product-price">$1,250.00 <span class="old-price">$1,750.00</span></p>
+                    <div class="product-actions">
+                        <button class="btn btn-outline btn-sm">Details</button>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="5" data-name="Artisan Gold Necklace" data-price="1250.00" data-image="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 6 -->
+            <div class="product-card">
+                <img src="p10.webp" alt="Leather Loafers" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">Handmade Leather Loafers</h3>
+                    <p class="product-designer">by Gucci</p>
+                    <p class="product-price">$950.00</p>
+                    <div class="product-actions">
+                        <button class="btn btn-outline btn-sm">Details</button>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="6" data-name="Handmade Leather Loafers" data-price="950.00" data-image="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=650&q=80">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 7 -->
+            <div class="product-card">
+                <span class="product-badge">Exclusive</span>
+                <img src="p11.webp" alt="Silk Blouse" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">Silk Chiffon Blouse</h3>
+                    <p class="product-designer">by Chanel</p>
+                    <p class="product-price">$1,350.00</p>
+                    <div class="product-actions">
+                        <button class="btn btn-outline btn-sm">Details</button>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="7" data-name="Silk Chiffon Blouse" data-price="1350.00" data-image="https://images.unsplash.com/photo-1554412933-514a83d2f3c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 8 -->
+            <div class="product-card">
+                <img src="p12.avif" alt="Tailored Blazer" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">Tailored Wool Blazer</h3>
+                    <p class="product-designer">by Brioni</p>
+                    <p class="product-price">$1,850.00</p>
+                    <div class="product-actions">
+                        <button class="btn btn-outline btn-sm">Details</button>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="8" data-name="Tailored Wool Blazer" data-price="1850.00" data-image="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-1.2.1&auto=format&fit=crop&w=1025&q=80">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 9 -->
+            <div class="product-card">
+                <span class="product-badge">New</span>
+                <img src="p13.webp" alt="Evening Dress" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">Beaded Evening Dress</h3>
+                    <p class="product-designer">by Dior</p>
+                    <p class="product-price">$3,750.00</p>
+                    <div class="product-actions">
+                        <button class="btn btn-outline btn-sm">Details</button>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="9" data-name="Beaded Evening Dress" data-price="3750.00" data-image="https://images.unsplash.com/photo-1551232864-1fe0e1e3662a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 10 -->
+            <div class="product-card">
+                <img src="p14.webp" alt="Statement Heels" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">Statement Crystal Heels</h3>
+                    <p class="product-designer">by Louboutin</p>
+                    <p class="product-price">$1,250.00</p>
+                    <div class="product-actions">
+                        <button class="btn btn-outline btn-sm">Details</button>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="10" data-name="Statement Crystal Heels" data-price="1250.00" data-image="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 11 -->
+            <div class="product-card">
+                <span class="product-badge">Limited</span>
+                <img src="p15.avif" alt="Silk Shirt" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">Italian Silk Shirt</h3>
+                    <p class="product-designer">by Loro Piana</p>
+                    <p class="product-price">$850.00</p>
+                    <div class="product-actions">
+                        <button class="btn btn-outline btn-sm">Details</button>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="11" data-name="Italian Silk Shirt" data-price="850.00" data-image="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 12 -->
+            <div class="product-card">
+                <img src="p16.webp" alt="Cashmere Sweater" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">Cashmere Crewneck Sweater</h3>
+                    <p class="product-designer">by Brunello Cucinelli</p>
+                    <p class="product-price">$1,150.00</p>
+                    <div class="product-actions">
+                        <button class="btn btn-outline btn-sm">Details</button>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="12" data-name="Cashmere Crewneck Sweater" data-price="1150.00" data-image="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 13 -->
+            <div class="product-card">
+                <span class="product-badge">New</span>
+                <img src="p17.avif" alt="Leather Bag" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">Limited Edition Leather Bag</h3>
+                    <p class="product-designer">by Hermès</p>
+                    <p class="product-price">$4,500.00</p>
+                    <div class="product-actions">
+                        <button class="btn btn-outline btn-sm">Details</button>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="13" data-name="Limited Edition Leather Bag" data-price="4500.00" data-image="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="about-container">
+            <div>
+                <img src="p18.avif" alt="About Luxcry Cart" class="about-img">
+            </div>
+            <div class="about-content">
+                <h2 class="serif">Where Desire Meets Design</h2>
+                <p>Luxcry Cart was born from a passion for craftsmanship and the belief that true luxury lies in the details. We curate only the finest pieces from established and emerging designers who share our commitment to quality and timeless elegance.</p>
+                <p>Our mission is to provide a discerning clientele with access to exceptional fashion that tells a story. Each piece in our collection has been carefully selected for its superior materials, impeccable construction, and ability to inspire.</p>
+                <p>We believe in slow fashion - investing in pieces that will endure both in quality and style. Our expert stylists are available to help you build a wardrobe that reflects your personal aesthetic while standing the test of time.</p>
+                <button class="btn btn-primary">Discover Our Story</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="satisfaction">
+        <h2 class="section-title serif">Our Commitment to You</h2>
+        <div class="satisfaction-grid">
+            <div class="satisfaction-item">
+                <div class="satisfaction-icon">✓</div>
+                <h3>Quality Assurance</h3>
+                <p>Every item is meticulously inspected to ensure it meets our exacting standards for craftsmanship and materials.</p>
+            </div>
+            <div class="satisfaction-item">
+                <div class="satisfaction-icon">✉️</div>
+                <h3>Personalized Service</h3>
+                <p>Our style consultants are available to provide tailored recommendations based on your preferences and lifestyle.</p>
+            </div>
+            <div class="satisfaction-item">
+                <div class="satisfaction-icon">🔄</div>
+                <h3>Easy Returns</h3>
+                <p>Not satisfied? We offer a 30-day return policy for full refunds or exchanges on unworn items.</p>
+            </div>
+            <div class="satisfaction-item">
+                <div class="satisfaction-icon">✈️</div>
+                <h3>Global Shipping</h3>
+                <p>We ship worldwide with discreet packaging and expedited delivery options available.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="disclaimer">
+        <h2>Disclaimer</h2>
+        <div class="disclaimer-content">
+            <p>Luxcry Cart provides this website as a service to its customers. While the information contained within the site is periodically updated, no guarantee is given that the information provided in this website is correct, complete, and up-to-date.</p>
+            
+            <p>The materials contained on this website are provided for general information purposes only and do not constitute legal or other professional advice on any subject matter. Luxcry Cart does not accept any responsibility for any loss which may arise from reliance on information contained on this site.</p>
+            
+            <p>Through this website you are able to link to other websites which are not under the control of Luxcry Cart. We have no control over the nature, content and availability of those sites. The inclusion of any links does not necessarily imply a recommendation or endorse the views expressed within them.</p>
+            
+            <p>Every effort is made to keep the website up and running smoothly. However, Luxcry Cart takes no responsibility for, and will not be liable for, the website being temporarily unavailable due to technical issues beyond our control.</p>
+            
+            <p>All products displayed on this website are subject to availability. Prices are subject to change without notice. While we strive to provide accurate product information, actual product packaging and materials may contain more and different information than what is shown on our website.</p>
+            
+            <p>Luxcry Cart reserves the right to limit the sales of our products to any person, geographic region or jurisdiction. We may exercise this right on a case-by-case basis. All descriptions of products or product pricing are subject to change at any time without notice, at our sole discretion.</p>
+            
+            <p>The colors of products displayed on the website may appear differently on various computer monitors and we cannot guarantee that your monitor's display of any color will be accurate. We have made every effort to display as accurately as possible the colors of our products that appear on the website.</p>
+            
+            <p>Certain content, products and services available via our Service may include materials from third-parties. Third-party links on this site may direct you to third-party websites that are not affiliated with us. We are not responsible for examining or evaluating the content or accuracy and we do not warrant and will not have any liability or responsibility for any third-party materials or websites, or for any other materials, products, or services of third-parties.</p>
+            
+            <p>We are not liable for any harm or damages related to the purchase or use of goods, services, resources, content, or any other transactions made in connection with any third-party websites. Please review carefully the third-party's policies and practices and make sure you understand them before you engage in any transaction. Complaints, claims, concerns, or questions regarding third-party products should be directed to the third-party.</p>
+            
+            <p>Your use of this website and any dispute arising out of such use of the website is subject to the laws of the jurisdiction where Luxcry Cart is registered. Any legal action or proceeding relating to your access to, or use of, the website or these terms and conditions shall be instituted only in such jurisdiction.</p>
+            
+            <p>By using this website, you acknowledge that you have read this disclaimer and agree to all its terms and conditions. If you do not agree with these terms and conditions, you are not authorized to use this website.</p>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h2 class="serif">Join Our LuxeCircle</h2>
+            <p>Subscribe to receive exclusive offers, early access to new collections, and style inspiration delivered to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Luxcry Cart</h3>
+                <p>Style That Speaks in Silks. Curated luxury fashion from timeless classics to cutting-edge designer pieces.</p>
+                <div class="social-links">
+                    <a href="#">📱</a>
+                    <a href="#">📸</a>
+                    <a href="#">📌</a>
+                    <a href="#">🎥</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Womenswear</a></li>
+                    <li><a href="#">Menswear</a></li>
+                    <li><a href="#">Jewelry & Accessories</a></li>
+                    <li><a href="#">Luxury Shoes</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Information</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <ul>
+                    <li>Luxcry Cart Headquarters</li>
+                    <li>123 Fashion Avenue</li>
+                    <li>New York, NY 10001</li>
+                    <li>United States</li>
+                    <li>+1 (555) 123-4567</li>
+                    <li>info@luxcrycart.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Luxcry Cart. All rights reserved. "Style That Speaks in Silks" and Luxcry Cart are registered trademarks.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartIcon = document.getElementById('cartIcon');
+            const cartDropdown = document.getElementById('cartDropdown');
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartCount = document.querySelector('.cart-count');
+            const cartTotal = document.getElementById('cartTotal');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            
+            let cart = [];
+            
+            // Toggle cart dropdown
+            cartIcon.addEventListener('click', function(e) {
+                e.stopPropagation();
+                cartDropdown.classList.toggle('active');
+            });
+            
+            // Close cart when clicking outside
+            document.addEventListener('click', function() {
+                cartDropdown.classList.remove('active');
+            });
+            
+            // Prevent cart from closing when clicking inside
+            cartDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            // Add to cart functionality
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    const image = this.getAttribute('data-image');
+                    
+                    // Check if item already in cart
+                    const existingItem = cart.find(item => item.id === id);
+                    
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({
+                            id,
+                            name,
+                            price,
+                            image,
+                            quantity: 1
+                        });
+                    }
+                    
+                    updateCart();
+                    cartDropdown.classList.add('active');
+                    
+                    // Add visual feedback
+                    button.textContent = 'Added!';
+                    setTimeout(() => {
+                        button.textContent = 'Add to Cart';
+                    }, 2000);
+                });
+            });
+            
+            // Update cart UI
+            function updateCart() {
+                // Clear cart items
+                cartItemsContainer.innerHTML = '';
+                
+                // Add each item to cart
+                let total = 0;
+                cart.forEach(item => {
+                    total += item.price * item.quantity;
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-title">${item.name}</h4>
+                            <p class="cart-item-price">$${item.price.toFixed(2)} x ${item.quantity}</p>
+                            <span class="remove-item" data-id="${item.id}">Remove</span>
+                        </div>
+                    `;
+                    
+                    cartItemsContainer.appendChild(cartItem);
+                });
+                
+                // Update total and count
+                cartTotal.textContent = total.toFixed(2);
+                cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+                
+                // Add event listeners to remove buttons
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        cart = cart.filter(item => item.id !== id);
+                        updateCart();
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

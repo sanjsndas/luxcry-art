@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxcry Cart Blog | Style That Speaks in Silks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0D0D0D;
+            --accent-gold: #F7E7CE;
+            --accent-white: #F5F5F5;
+            --text-light: #E8E8E8;
+            --text-dark: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--accent-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: var(--accent-white);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo span {
+            color: var(--accent-white);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--accent-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-gold);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent-gold);
+            color: var(--primary);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        /* Cart Dropdown */
+        .cart-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 350px;
+            background-color: var(--accent-white);
+            border: 1px solid #ddd;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            z-index: 10;
+            display: none;
+            color: var(--text-dark);
+        }
+
+        .cart-dropdown.active {
+            display: block;
+        }
+
+        .cart-dropdown h3 {
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-price {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .remove-item {
+            color: #ff6b6b;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .cart-total {
+            margin-top: 1rem;
+            font-weight: bold;
+            text-align: right;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+        }
+
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--accent-white);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--accent-white);
+        }
+
+        .btn-primary:hover {
+            background: #333;
+        }
+
+        /* Hero Section */
+        .blog-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: var(--accent-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .blog-hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .blog-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .blog-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Blog Content */
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+        }
+
+        .blog-main {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .blog-post {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-post-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .blog-post-content {
+            padding: 2rem;
+        }
+
+        .blog-post-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .blog-post-tag {
+            background: var(--accent-gold);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .blog-post-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .blog-post-excerpt {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .blog-post-link {
+            color: var(--primary);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .blog-post-link:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Sidebar */
+        .blog-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sidebar-widget {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .widget-title {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .widget-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-gold);
+        }
+
+        .search-form {
+            display: flex;
+        }
+
+        .search-form input {
+            flex: 1;
+            padding: 0.6rem 1rem;
+            border: 1px solid #ddd;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .search-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .search-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 1rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-form button:hover {
+            background: #333;
+        }
+
+        .categories-list {
+            list-style: none;
+        }
+
+        .categories-list li {
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .categories-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .categories-list a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .categories-list a:hover {
+            color: var(--accent-gold);
+        }
+
+        .categories-list span {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .popular-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .popular-post {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .popular-post-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .popular-post-content h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+            font-weight: 500;
+        }
+
+        .popular-post-content p {
+            color: #777;
+            font-size: 0.8rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: #f5f5f5;
+            color: var(--text-dark);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .tag:hover {
+            background: var(--accent-gold);
+            color: var(--primary);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: var(--accent-white);
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+        }
+
+        .newsletter-form button {
+            padding: 0 1.5rem;
+            background: var(--accent-gold);
+            color: var(--primary);
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background: #e6d5b8;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+
+        .page-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            background: white;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .page-link:hover, .page-link.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--accent-white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-col h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-gold);
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--accent-white);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-gold);
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem;
+            }
+
+            .blog-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .blog-post-img {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .blog-container {
+                padding: 3rem 1rem;
+            }
+
+            .blog-hero h1 {
+                font-size: 2rem;
+            }
+
+            .blog-post-title {
+                font-size: 1.5rem;
+            }
+
+            .cart-dropdown {
+                width: 280px;
+            }
+        }
+
+        /* Additional Styles */
+        .text-gold {
+            color: var(--accent-gold);
+        }
+
+        .mb-3 {
+            margin-bottom: 3rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo"><span class="text-gold">Lux</span>cry <span>Cart</span></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li>
+                        <div class="cart-icon" id="cartIcon">
+                            🛒 <span class="cart-count">0</span>
+                            <div class="cart-dropdown" id="cartDropdown">
+                                <h3>Your Cart</h3>
+                                <div id="cartItems">
+                                    <!-- Cart items will be added here dynamically -->
+                                </div>
+                                <div class="cart-total">
+                                    Total: $<span id="cartTotal">0.00</span>
+                                </div>
+                                <div class="cart-actions">
+                                    <button class="btn btn-outline">View Cart</button>
+                                    <button class="btn btn-primary">Checkout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="blog-hero">
+        <div class="blog-hero-content">
+            <h1 class="serif">The Luxcry Journal</h1>
+            <p>Discover the stories behind the styles, fashion insights, and luxury living inspiration.</p>
+        </div>
+    </section>
+
+    <div class="blog-container">
+        <main class="blog-main">
+            <article class="blog-post">
+                <img src="b1.webp" alt="The Art of Silk" class="blog-post-img">
+                <div class="blog-post-content">
+                    <div class="blog-post-meta">
+                        <span>May 15, 2023</span>
+                        <span class="blog-post-tag">Fabric Guide</span>
+                    </div>
+                    <h2 class="blog-post-title">The Timeless Elegance of Silk: A Fabric Guide</h2>
+                    <p class="blog-post-excerpt">Silk has been synonymous with luxury for centuries. Discover the different types of silk, their unique properties, and how to care for your silk garments to ensure they remain timeless pieces in your wardrobe.</p>
+                    <a href="#" class="blog-post-link">Read More →</a>
+                </div>
+            </article>
+
+            <article class="blog-post">
+                <img src="b2.avif" alt="Sustainable Luxury" class="blog-post-img">
+                <div class="blog-post-content">
+                    <div class="blog-post-meta">
+                        <span>April 28, 2023</span>
+                        <span class="blog-post-tag">Sustainability</span>
+                    </div>
+                    <h2 class="blog-post-title">Sustainable Luxury: How High Fashion is Embracing Eco-Conscious Practices</h2>
+                    <p class="blog-post-excerpt">The luxury fashion industry is undergoing a transformation as designers and brands commit to sustainable practices. Explore how leading fashion houses are reducing their environmental impact while maintaining their commitment to quality and craftsmanship.</p>
+                    <a href="#" class="blog-post-link">Read More →</a>
+                </div>
+            </article>
+
+            <article class="blog-post">
+                <img src="b3.avif" alt="Wardrobe Essentials" class="blog-post-img">
+                <div class="blog-post-content">
+                    <div class="blog-post-meta">
+                        <span>March 12, 2023</span>
+                        <span class="blog-post-tag">Style Guide</span>
+                    </div>
+                    <h2 class="blog-post-title">10 Timeless Wardrobe Essentials for the Modern Woman</h2>
+                    <p class="blog-post-excerpt">Building a capsule wardrobe with investment pieces that stand the test of time. From the perfect little black dress to a tailored blazer, these are the items that will serve you season after season.</p>
+                    <a href="#" class="blog-post-link">Read More →</a>
+                </div>
+            </article>
+
+            <article class="blog-post">
+                <img src="b4.webp" alt="Emerging Designers" class="blog-post-img">
+                <div class="blog-post-content">
+                    <div class="blog-post-meta">
+                        <span>February 22, 2023</span>
+                        <span class="blog-post-tag">Designers</span>
+                    </div>
+                    <h2 class="blog-post-title">5 Emerging Designers Redefining Luxury Fashion</h2>
+                    <p class="blog-post-excerpt">Meet the innovative designers bringing fresh perspectives to luxury fashion. These rising stars are combining traditional craftsmanship with contemporary aesthetics to create truly unique pieces.</p>
+                    <a href="#" class="blog-post-link">Read More →</a>
+                </div>
+            </article>
+
+            <div class="pagination">
+                <a href="#" class="page-link active">1</a>
+                <a href="#" class="page-link">2</a>
+                <a href="#" class="page-link">3</a>
+                <a href="#" class="page-link">→</a>
+            </div>
+        </main>
+
+        <aside class="blog-sidebar">
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Search</h3>
+                <form class="search-form">
+                    <input type="text" placeholder="Search articles...">
+                    <button type="submit">🔍</button>
+                </form>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Categories</h3>
+                <ul class="categories-list">
+                    <li><a href="#">Fabric Guide <span>(12)</span></a></li>
+                    <li><a href="#">Style Tips <span>(8)</span></a></li>
+                    <li><a href="#">Designer Spotlight <span>(5)</span></a></li>
+                    <li><a href="#">Sustainable Fashion <span>(7)</span></a></li>
+                    <li><a href="#">Luxury Living <span>(4)</span></a></li>
+                    <li><a href="#">Trend Reports <span>(6)</span></a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Popular Posts</h3>
+                <div class="popular-posts">
+                    <a href="#" class="popular-post">
+                        <img src="b5.avif" alt="How to Care for Cashmere" class="popular-post-img">
+                        <div class="popular-post-content">
+                            <h4>How to Care for Your Cashmere</h4>
+                            <p>March 5, 2023</p>
+                        </div>
+                    </a>
+                    <a href="#" class="popular-post">
+                        <img src="b6.avif" alt="Investment Pieces" class="popular-post-img">
+                        <div class="popular-post-content">
+                            <h4>Investment Pieces Worth Splurging On</h4>
+                            <p>February 18, 2023</p>
+                        </div>
+                    </a>
+                    <a href="#" class="popular-post">
+                        <img src="b7.webp" alt="Spring Trends" class="popular-post-img">
+                        <div class="popular-post-content">
+                            <h4>Spring 2023 Trends to Know</h4>
+                            <p>January 30, 2023</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Tags</h3>
+                <div class="tags">
+                    <a href="#" class="tag">Silk</a>
+                    <a href="#" class="tag">Cashmere</a>
+                    <a href="#" class="tag">Sustainability</a>
+                    <a href="#" class="tag">Wardrobe</a>
+                    <a href="#" class="tag">Designers</a>
+                    <a href="#" class="tag">Trends</a>
+                    <a href="#" class="tag">Accessories</a>
+                    <a href="#" class="tag">Care Guide</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h2 class="serif">Join Our LuxeCircle</h2>
+            <p>Subscribe to receive exclusive offers, early access to new collections, and style inspiration delivered to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Luxcry Cart</h3>
+                <p>Style That Speaks in Silks. Curated luxury fashion from timeless classics to cutting-edge designer pieces.</p>
+                <div class="social-links">
+                    <a href="#">📱</a>
+                    <a href="#">📸</a>
+                    <a href="#">📌</a>
+                    <a href="#">🎥</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Womenswear</a></li>
+                    <li><a href="#">Menswear</a></li>
+                    <li><a href="#">Jewelry & Accessories</a></li>
+                    <li><a href="#">Luxury Shoes</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Information</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <ul>
+                    <li>Luxcry Cart Headquarters</li>
+                    <li>123 Fashion Avenue</li>
+                    <li>New York, NY 10001</li>
+                    <li>United States</li>
+                    <li>+1 (555) 123-4567</li>
+                    <li>info@luxcrycart.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Luxcry Cart. All rights reserved. "Style That Speaks in Silks" and Luxcry Cart are registered trademarks.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartIcon = document.getElementById('cartIcon');
+            const cartDropdown = document.getElementById('cartDropdown');
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartCount = document.querySelector('.cart-count');
+            const cartTotal = document.getElementById('cartTotal');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            
+            let cart = [];
+            
+            // Toggle cart dropdown
+            cartIcon.addEventListener('click', function(e) {
+                e.stopPropagation();
+                cartDropdown.classList.toggle('active');
+            });
+            
+            // Close cart when clicking outside
+            document.addEventListener('click', function() {
+                cartDropdown.classList.remove('active');
+            });
+            
+            // Prevent cart from closing when clicking inside
+            cartDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            // Add to cart functionality
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    const image = this.getAttribute('data-image');
+                    
+                    // Check if item already in cart
+                    const existingItem = cart.find(item => item.id === id);
+                    
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({
+                            id,
+                            name,
+                            price,
+                            image,
+                            quantity: 1
+                        });
+                    }
+                    
+                    updateCart();
+                    cartDropdown.classList.add('active');
+                    
+                    // Add visual feedback
+                    button.textContent = 'Added!';
+                    setTimeout(() => {
+                        button.textContent = 'Add to Cart';
+                    }, 2000);
+                });
+            });
+            
+            // Update cart UI
+            function updateCart() {
+                // Clear cart items
+                cartItemsContainer.innerHTML = '';
+                
+                // Add each item to cart
+                let total = 0;
+                cart.forEach(item => {
+                    total += item.price * item.quantity;
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-title">${item.name}</h4>
+                            <p class="cart-item-price">$${item.price.toFixed(2)} x ${item.quantity}</p>
+                            <span class="remove-item" data-id="${item.id}">Remove</span>
+                        </div>
+                    `;
+                    
+                    cartItemsContainer.appendChild(cartItem);
+                });
+                
+                // Update total and count
+                cartTotal.textContent = total.toFixed(2);
+                cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+                
+                // Add event listeners to remove buttons
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        cart = cart.filter(item => item.id !== id);
+                        updateCart();
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
